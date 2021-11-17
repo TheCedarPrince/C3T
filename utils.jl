@@ -23,6 +23,8 @@ function hfun_insert_weave(params)
     (isfile(fullpath) && splitext(fullpath)[2] == ".jmd") || return ""
     print("Weaving... ")
     t = tempname()
+    # TODO: Add ability for using pandoc output
+    # weave(fullpath, out_path=t, doctype = "pandoc2html", pandoc_options = ["--toc"])
     weave(fullpath, out_path=t)
     println("✓ [done].")
     fn = splitext(splitpath(fullpath)[end])[1]
