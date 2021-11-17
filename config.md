@@ -11,6 +11,7 @@ mintoclevel = 2
 # Base files such as LICENSE.md and README.md are ignored by default.
 ignore = ["node_modules/"]
 weave = false
+prepath = "C3T"
 
 # RSS (the website_{title, descr, url} must be defined to get RSS)
 generate_rss = true

@@ -18,7 +18,6 @@ function lx_baz(com, _)
 end
 
 function hfun_insert_weave(params)
-    println(params)
     rpath = params[1]
     fullpath = joinpath(Franklin.path(:folder), rpath)
     (isfile(fullpath) && splitext(fullpath)[2] == ".jmd") || return ""
