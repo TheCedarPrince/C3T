@@ -1,12 +1,20 @@
-Hello world!
 
+## Entry One
 
-```julia
-println("This is a Julia Code block!")
+This section was generated from a weave document!
+
+```julia, results = "hidden"
+x = 5
+y = 2
+
+result = findmax([x, y])
 ```
+
+The answer to the previous question is `j result`.
 
 
 ```julia
 2 + 2 * 3 - 81
 ```
 
+## Entry Two

@@ -1,4 +1,4 @@
-Sitemap: https://tlienart.github.io/FranklinTemplates.jl/sitemap.xml
+Sitemap: http://jacobzelko.com/C3T/sitemap.xml
 
 User-agent: *
 Disallow:
