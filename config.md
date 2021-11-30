@@ -12,6 +12,7 @@ mintoclevel = 2
 ignore = ["node_modules/"]
 weave = false
 prepath = "C3T"
+hasmermaid = false
 
 # RSS (the website_{title, descr, url} must be defined to get RSS)
 generate_rss = true
