@@ -16,11 +16,13 @@ The arrows in the following diagram can be thought of as functions.
 They are also known as _morphisms_.
 
 ```mermaid
-	graph LR
 
-	A --> B
-	B --> C
-	A --> C
+graph LR;
+
+A --> B;
+B --> C;
+A --> C;
+
 ```
 
 In a category, if there is an arrow going from $A$ to $B$ and an arrow from $B$ to $C$, there must be a direct arrow from $A$ to $C$.
