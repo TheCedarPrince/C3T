@@ -1,0 +1,110 @@
+# Category: The Essence of Composition
+
+> What is Category Theory?
+
+It actively discourages looking inside objects.
+In category theory, an object is just a vague thing where the only thing you know about them is how they relate to other objects.
+
+> What Is a Category?
+
+A category consists of objects and arrows that go between them.
+Key to categories is there ability to compose.
+
+> What Is a Morphism?
+
+The arrows in the following diagram can be thought of as functions.
+They are also known as _morphisms_.
+
+```mermaid
+	graph LR
+
+	A --> B
+	B --> C
+	A --> C
+```
+
+In a category, if there is an arrow going from $A$ to $B$ and an arrow from $B$ to $C$, there must be a direct arrow from $A$ to $C$.
+This arrow from $A$ to $C$ is their composition.
+
+$f(A) = B$
+
+$g(B) = C$
+
+$(g \circ f)(A) = C$
+
+> What are the properties of composition in categories?
+
+1. Composition is associative.
+
+Example:
+Given three composable morphisms, $f$, $g$, and $h$, parentheses are not needed to compose them.
+This can be demonstrated below:
+
+$$h \circ (g \circ f) = (h \circ g) \circ f = h \circ g \circ f$$
+
+2. For every object $A$, there exists an arrow (morphism) which is a _unit of composition_.
+A "unit of composition" is that whenever there is an arrow starting or ending at $A$, it gives back the same arrow.
+
+Example:
+The unit arrow (or morphism) for object $A$ is denoted as $\textbf{id}_{A}$ which can be read out as the _identity_ on $A$.
+If there is a morphism $f$ that goes from $A$ to $B$, then
+
+$$f \circ \textbf{id}_{A} = f$$
+
+and 
+
+$$\textbf{id}_{B} \circ f = f$$
+
+In practice, the identity arrow is implemented as an identity function which returns its argument.
+
+## Challenges
+
+1. Implement, as best as you can, the identity function in your favorite language (or the second favorite, if your favorite language happens to be Haskell). 
+
+```julia, results = "hidden", eval = true
+id(x) = x
+```
+
+2. Implement the composition function in your favorite language.
+It takes two functions as arguments and returns a function that is their composition.
+
+```julia, eval = true, results = "hidden"
+f(x) = x + 2
+g(x) = x^2
+h = g ∘ f
+```
+
+3. Write a program that tries to test that your composition function respects identity. 
+
+Test one: 
+
+```julia, eval = true
+(id ∘ h)(2) == h(2)
+```
+
+Test two:
+
+```julia, eval = true
+(h ∘ id)(13) == h(13)
+```
+
+Test three:
+
+```julia, eval = true
+(id ∘ h)(-7) == h(-7)
+```
+
+4. Is the world-wide web a category in any sense? Are links morphisms?
+
+I would say that the world-wide web is a category.
+Web pages would function as objects and links would be morphisms that go between them.
+I think links are valid as morphisms as they form arrows to and from objects.
+
+5. Is Facebook a category, with people as objects and friendships as morphisms?
+
+I would say that Facebook would not be a category as the objects and friendships are not composable.
+Say if you have friend $A$ who is friends with $B$ and $B$ is friends with $C$, if you wanted to get to friend $C$ from knowing friend $A$, there is not a direct connection between the two.
+
+6. When is a directed graph a category?
+
+A directed graph is a category when you can come up with associative compositions at any position on the graph.
