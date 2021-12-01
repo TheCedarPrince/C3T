@@ -4,10 +4,30 @@
       <h3 style='font-size: 25px'>🐱 C3T 🐱</h3>
     </span>
   </div> <!-- class="flex-container" -->
+  
+  <!--LUNR SEARCH BOX-->
+    <script src="/libs/lunr/lunr.min.js"></script>
+  <script src="/libs/lunr/lunr_index.js"></script>
+  <script src="/libs/lunr/lunrclient.min.js"></script>
+  
+<style>
+.result-title a { text-decoration: none; }
+.result-title a:hover { text-decoration: underline; }
+.result-preview { color: #808080; }
+.resultCount { color: #808080; }
+.result-query { font-weight: bold; }
+#lunrSearchForm { margin-top: 1em; }
+</style>
 
   <nav class="sidebar-nav">
     <ul class="metismenu"  id="metismenu" >
       <li><a href="/">Home</a></li>
+      <li>
+	<form id="lunrSearchForm" name="lunrSearchForm">
+  <input class="search-input" name="q" placeholder="Enter search term" type="text">
+  <input type="submit" value="Search" formaction="/search/index.html">
+</form>
+      </li>
       <li><a href="/" class="has-arrow">Resources</a>
       <ul>
 	      <li><a href="/resources/">Resources Overview</a>
@@ -17,6 +37,7 @@
 		    <li><a href="/" class="has-arrow">Category Theory for Programmers</a>
 		    <ul>
 		    <li><a href="/milewski-programmers-1">Chapter 1</a></li>
+		    <li><a href="/milewski-programmers-2">Chapter 2</a></li>
 		    </ul>
 		    </li>
 		    <li><a href="/spivak-sciences/">Category Theory for the Sciences</a></li>
