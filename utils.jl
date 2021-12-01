@@ -33,7 +33,7 @@ function insert_weave_toc(file)
     open(t, "w") do f
         write(f, lines[1])
         write(f, "\n")
-	write(f, toc[1] * "\n")
+        write(f, toc[1] * "\n")
         for s in toc[2:end]
             write(f, s * "\n")
         end
@@ -83,6 +83,28 @@ function hfun_insert_weave(params)
     # TODO: Add ability to create TOC off of default HTML
     # html = insert_weave_toc(html)
     return html
+end
+
+function hfun_insert_pandoc(params)
+    rpath = params[1]
+    fullpath = joinpath(Franklin.path(:folder), rpath)
+    (isfile(fullpath) && splitext(fullpath)[2] == ".md") || return ""
+    print("Inserting References for $(params[1])... ")
+    t = tempname()
+    s = ""
+    if length(params) == 2
+        s = read(
+            `pandoc --citeproc -i $fullpath --bibliography=$(joinpath(Franklin.path(:folder), params[2])) -t html`,
+            String,
+        )
+    else
+        s = read(
+            `pandoc --citeproc -i $fullpath -t html`,
+            String,
+        )
+    end
+    println("✓ [done].")
+    return s
 end
 
 function env_mermaid(e, _)
