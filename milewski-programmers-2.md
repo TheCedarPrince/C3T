@@ -1,7 +1,4 @@
 @def weave = true
-@def hasmermaid = true
+@def hasmermaid = false
 
-\textinput{tmp2.md}
-
-<!--{{insert_weave milewski-programmers-2.jmd}}-->
-<!--{{insert_pandoc tmp.md}}-->
+{{insert_weave milewski-programmers-2.jmd}}
