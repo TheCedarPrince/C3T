@@ -311,3 +311,9 @@ uuid = "8e850ede-7688-5339-a07c-302acd2aaf8d"
 [[p7zip_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
+
+[[pandoc_jll]]
+deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
+git-tree-sha1 = "a79cc3ed73e5503ee325dbec13ca17f1ad10555a"
+uuid = "c5432543-76ad-5c9d-82bf-db097047a5e2"
+version = "2.14.0+0"
