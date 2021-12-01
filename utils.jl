@@ -87,18 +87,19 @@ end
 
 function hfun_insert_pandoc(params)
     rpath = params[1]
-    fullpath = rpath
-    print("Inserting References for $(params[1])... ")
+    file_path = joinpath(Franklin.path(:folder), rpath)
+    (isfile(file_path) && splitext(file_path)[2] == ".jmd") || return ""
     t = tempname()
     s = ""
     if length(params) == 2
+        cite_path = file_path = joinpath(Franklin.path(:folder), params[2])
         s = read(
-            `pandoc --citeproc -i $rpath --bibliography=$(params[2]) -t html`,
+            `pandoc --citeproc -i $file_path --bibliography=$cite_path -t html`,
             String,
         )
     else
         s = read(
-            `pandoc --citeproc -i $rpath -t html`,
+            `pandoc --citeproc -i $file_path -t html`,
             String,
         )
     end
