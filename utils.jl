@@ -1,4 +1,5 @@
 using Weave
+using pandoc_jll
 
 function hfun_bar(vname)
     val = Meta.parse(vname[1])
@@ -90,17 +91,16 @@ function hfun_insert_pandoc(params)
     file_path = joinpath(Franklin.path(:folder), rpath)
     (isfile(file_path) && splitext(file_path)[2] == ".md") || return ""
     t = tempname()
-    run(`pandoc --version`)
     s = ""
     if length(params) == 2
         cite_path = file_path = joinpath(Franklin.path(:folder), params[2])
         s = read(
-            `pandoc --citeproc -i $file_path --bibliography=$cite_path -t html`,
+            `$(pandoc) --citeproc -i $file_path --bibliography=$cite_path -t html`,
             String,
         )
     else
         s = read(
-            `pandoc --citeproc -i $file_path -t html`,
+            `$(pandoc) -i $file_path -t html`,
             String,
         )
     end
