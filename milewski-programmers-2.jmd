@@ -1,0 +1,183 @@
+# Types and Functions
+
+> At its core, what is category theory about?
+
+Category Theory is about composability.
+This means that the target of one arrow must be the source for the next arrow.
+In programming, this means that the results of one function must be the input into the next function.
+
+> Why is the category of sets, **Set**, special?
+
+In **Set**, the objects are sets and the morphisms are functions (or mappings) between the objects.
+This category allows us to know what are inside the objects by definitions provided by Set Theory.
+
+> Where does the analogy between programming functions and mathematical functions breakdown?
+
+A mathematical function just knows the answer for a given function definition.
+A programmed function must calculate the answer.
+
+> What is the "bottom" of every type?
+
+The "bottom", denoted as $\bot$, signifies a non-terminating computation.
+Functions that return a "bottom" are partial.
+Functions that do not are total as they return valid results for every possible input.
+
+> What is the difference between operational and denotational semantics?
+
+Operational semantics concerns the definition of an idealized and formalized interpreter.
+Using this idealization and language, one can reason abstractly about a program's execution.
+However, what is difficult about this approach is that the abstract reasoning about the language can be very difficult to verify.
+
+Denotational semantics instead assigns a mathematical definition to every programming construct in a given language.
+Rather than reasoning about a program's execution, you instead reason about the mathematics.
+
+> What was Eugenio Moggi's core contribution to programming and category theory?
+
+Eugenio Moggi discovered how computational effect can be mapped to the concepts of monads.
+This also enabled the expansive use of denotational semantic reasoning across the entirety of programming.
+
+> What is a pure function in programming?
+
+A [pure function](11082021225843-pure-functions.md) is one in which the same result is always produced with no side effects given the same input.
+
+> What is a parametrically polymorphic function?
+
+A parametrically polymorphic function is one that uses the same formulation for any type given to it.
+An example would be:
+
+```haskell
+myfunction :: a -> ()
+myfunction _ = ()
+```
+
+## Challenges
+
+1. Define a higher-order function (or a function object) memoize in your favorite language.
+This function takes a pure function `f` as an argument and returns a function that behaves almost exactly like `f`, except that it only calls the original function once for every argument, stores the result internally, and subsequently returns this stored result every time it's called with the same argument. 
+You can tell the memoized function from the original by watching its performance.
+For instance, try to memoize a function that takes a long time to evaluate.
+You’ll have to wait for the result the first time you call it, but on subsequent calls, with the same argument, you should get the result immediately.
+
+This was an initial solution I came up with.
+It works properly but is somewhat unoptimized and is somewhat brittle.
+By brittle, it only works for one specific function.
+If I try to use another function, it will access information about the last memoized function.
+
+```julia
+const m_cache = Dict{Int, Int}()
+
+function memoize(f)
+	function memoized(x ; f = f)
+		get!(m_cache, x) do
+			f(x)
+		end
+	end
+	return m(x) = memoized(x ; f = f)
+end
+
+fact(x) = (*).(1:x...)
+
+f = fact
+m = memoize(f)
+m(10)
+```
+
+Here is another solution that came from Alberto Braunstein from the Julia community.
+This solution in my opinion is much more elegant as it gets around the problem of having one cache for specific functions.
+Instead, the respective memoized function's cache is forever associated with it:
+
+```julia
+function memoize(f)
+    fcache = Dict{Int,Int}()
+    function memoized(x)
+        get!(fcache, x) do
+            f(x)
+        end
+    end
+end
+
+fact(x) = (*).(1:x...)
+
+f = fact
+m = memoize(f)
+m(10)
+```
+
+2. Try to memoize a function from your standard library that you normally use to produce random numbers.
+Does it work?
+
+```julia
+function memoize(f)
+    fcache = Dict()
+    function memoized(x)
+        get!(fcache, x) do
+            f(x)
+        end
+    end
+end
+
+f = rand
+m_rand = memoize(f)
+```
+
+Using this solution, the function does get memoized, but it no longer produces random numbers.
+Instead, it caches the initial random number and no longer creates random numbers.
+
+3. Most random number generators can be initialized with a seed.
+Implement a function that takes a seed, calls the random number generator with that seed, and returns the result.
+Memoize that function.
+Does it work?
+
+```julia
+using Random
+
+function memoized_rand(seed)
+    fcache = Dict()
+    get!(fcache, seed) do
+        rand(MersenneTwister(seed))
+    end
+end
+
+seed = 42
+
+memoized_rand(seed)
+```
+
+4. Which of these C++ functions are pure?
+Try to memoize them and observe what happens when you call them multiple times; memoized or not.
+
+a. The factorial function from the example in this text.
+
+Yes, this is a pure function as it does not produce side effects and is the same for a given input.
+
+b. Skipped
+
+c. Skipped
+
+d. Skipped
+
+5. How many different functions are there from `Bool` to `Bool`?
+Can you implement them all?
+
+	1. `True`
+	2. `False`
+	3. `not`
+	4. `id`
+
+6. Draw a picture of a category whose only objects are the types `Void`, `()`, and `Bool`; with arrows corresponding to all possible functions between these types.
+Label the arrows with the names of the functions.
+
+```mermaid
+graph LR;
+
+Void -- absurd --> unit;
+Void -- id --> Void;
+Bool -- True --> Bool;
+Bool -- False --> Bool;
+Bool -- not --> Bool;
+Bool -- id --> Bool;
+unit -- True --> Bool;
+unit -- False --> Bool;
+unit -- id --> unit;
+
+```
