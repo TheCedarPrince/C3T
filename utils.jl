@@ -91,6 +91,7 @@ function hfun_insert_pandoc(params)
     file_path = joinpath(Franklin.path(:folder), rpath)
     (isfile(file_path) && splitext(file_path)[2] == ".md") || return ""
     t = tempname()
+    run(`$(pandoc) --version`)
     s = ""
     if length(params) == 2
         cite_path = file_path = joinpath(Franklin.path(:folder), params[2])
