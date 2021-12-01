@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {{if hasmath}} {{insert head_katex.html }}   {{end}}
   {{if hascode}} {{insert head_highlight.html }}   {{end}}
+  <!--WEAVE SYNTAX HIGHLIGHTING-->
+  {{if weave}} {{insert head_highlight.html }} {{end}}
 
   {{insert style.html}}
+  <!--WEAVE DOCUMENT INSERTION-->
   {{if weave}}
     <link rel="stylesheet" href="/css/weave.css">
     <script type="text/x-mathjax-config">
