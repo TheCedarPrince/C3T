@@ -88,7 +88,7 @@ end
 function hfun_insert_pandoc(params)
     rpath = params[1]
     file_path = joinpath(Franklin.path(:folder), rpath)
-    (isfile(file_path) && splitext(file_path)[2] == ".jmd") || return ""
+    (isfile(file_path) && splitext(file_path)[2] == ".md") || return ""
     t = tempname()
     s = ""
     if length(params) == 2
