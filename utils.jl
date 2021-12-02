@@ -91,23 +91,21 @@ function hfun_insert_pandoc(params)
     file_path = joinpath(Franklin.path(:folder), rpath)
     (isfile(file_path) && splitext(file_path)[2] == ".md") || return ""
     t = tempname()
-    pandoc() do pandoc_bin
-        run(`$(pandoc_bin) --version`)
-	println("Success")
-	return "Success!"
-    end
     s = ""
     if length(params) == 2
         cite_path = file_path = joinpath(Franklin.path(:folder), params[2])
-        s = read(
-            `$(pandoc) --citeproc -i $file_path --bibliography=$cite_path -t html`,
-            String,
-        )
+        s = pandoc() do pandoc_bin
+            s = read(
+                `$(pandoc_bin) --citeproc -i $file_path --bibliography=$cite_path -t html`,
+                String,
+            )
+            return s
+        end
     else
-        s = read(
-            `$(pandoc) -i $file_path -t html`,
-            String,
-        )
+        s = pandoc() do pandoc_bin
+            s = read(`$(pandoc_bin) -i $file_path -t html`, String)
+            return s
+        end
     end
     println("✓ [done].")
     return s
