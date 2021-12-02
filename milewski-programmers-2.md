@@ -1,5 +1,4 @@
 @def weave = true
-@def hasmermaid = false
+@def hasmermaid = true
 
-{{insert_pandoc tmp.md}}
-<!--{{insert_weave milewski-programmers-2.jmd}}-->
+{{insert_weave milewski-programmers-2.jmd}}

@@ -38,7 +38,7 @@ This also enabled the expansive use of denotational semantic reasoning across th
 
 > What is a pure function in programming?
 
-A [pure function](11082021225843-pure-functions.md) is one in which the same result is always produced with no side effects given the same input.
+A [pure function](/pure-functions) is one in which the same result is always produced with no side effects given the same input.
 
 > What is a parametrically polymorphic function?
 
@@ -52,11 +52,7 @@ myfunction _ = ()
 
 ## Challenges
 
-1. Define a higher-order function (or a function object) memoize in your favorite language.
-This function takes a pure function `f` as an argument and returns a function that behaves almost exactly like `f`, except that it only calls the original function once for every argument, stores the result internally, and subsequently returns this stored result every time it's called with the same argument. 
-You can tell the memoized function from the original by watching its performance.
-For instance, try to memoize a function that takes a long time to evaluate.
-You’ll have to wait for the result the first time you call it, but on subsequent calls, with the same argument, you should get the result immediately.
+1. Define a higher-order function (or a function object) memoize in your favorite language. This function takes a pure function `f` as an argument and returns a function that behaves almost exactly like `f`, except that it only calls the original function once for every argument, stores the result internally, and subsequently returns this stored result every time it's called with the same argument. You can tell the memoized function from the original by watching its performance. For instance, try to memoize a function that takes a long time to evaluate. You’ll have to wait for the result the first time you call it, but on subsequent calls, with the same argument, you should get the result immediately.
 
 This was an initial solution I came up with.
 It works properly but is somewhat unoptimized and is somewhat brittle.
@@ -103,8 +99,7 @@ m = memoize(f)
 m(10)
 ```
 
-2. Try to memoize a function from your standard library that you normally use to produce random numbers.
-Does it work?
+2. Try to memoize a function from your standard library that you normally use to produce random numbers. Does it work?
 
 ```julia
 function memoize(f)
@@ -123,10 +118,7 @@ m_rand = memoize(f)
 Using this solution, the function does get memoized, but it no longer produces random numbers.
 Instead, it caches the initial random number and no longer creates random numbers.
 
-3. Most random number generators can be initialized with a seed.
-Implement a function that takes a seed, calls the random number generator with that seed, and returns the result.
-Memoize that function.
-Does it work?
+3. Most random number generators can be initialized with a seed. Implement a function that takes a seed, calls the random number generator with that seed, and returns the result. Memoize that function. Does it work?
 
 ```julia
 using Random
@@ -143,8 +135,7 @@ seed = 42
 memoized_rand(seed)
 ```
 
-4. Which of these C++ functions are pure?
-Try to memoize them and observe what happens when you call them multiple times; memoized or not.
+4. Which of these C++ functions are pure? Try to memoize them and observe what happens when you call them multiple times; memoized or not.
 
 a. The factorial function from the example in this text.
 
@@ -156,16 +147,14 @@ c. Skipped
 
 d. Skipped
 
-5. How many different functions are there from `Bool` to `Bool`?
-Can you implement them all?
+5. How many different functions are there from `Bool` to `Bool`? Can you implement them all?
 
-	1. `True`
-	2. `False`
-	3. `not`
-	4. `id`
+    - `True`
+    - `False`
+    - `not`
+    - `id`
 
-6. Draw a picture of a category whose only objects are the types `Void`, `()`, and `Bool`; with arrows corresponding to all possible functions between these types.
-Label the arrows with the names of the functions.
+6. Draw a picture of a category whose only objects are the types `Void`, `()`, and `Bool`; with arrows corresponding to all possible functions between these types. Label the arrows with the names of the functions.
 
 ```mermaid
 graph LR;
