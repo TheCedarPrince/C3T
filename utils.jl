@@ -93,7 +93,7 @@ function hfun_insert_pandoc(params)
     t = tempname()
     s = ""
     if length(params) == 2
-        cite_path = file_path = joinpath(Franklin.path(:folder), params[2])
+        cite_path = joinpath(Franklin.path(:folder), params[2])
         s = pandoc() do pandoc_bin
             s = read(
                 `$(pandoc_bin) --citeproc -i $file_path --bibliography=$cite_path -t html`,
