@@ -1,8 +1,18 @@
 # Analysis Introduction
 
+The intent of this exploratory analysis is to provide a guide to working with  Attributed C-Sets, otherwise known as "ACSets" (pronunciation: ah-chets).
+Before we move directly into the analysis, let's discuss what an ACSet actually is.
+
 ## Background on ACSets
 
-The intent of this exploratory analysis is to provide a guide to working with  Attributed C-Sets, otherwise known as "ACSets" (pronunciation: ah-chets).
+This type of data structure was introduced in the paper _Categorical Data Structures for Technical Computing_ and is an application of Category Theory in the domain of technical computing.
+<!-- TODO: Add citation here from 1006202116335-ascets-paper.md -->
+In particular, an ACSet is comprised of two species of data:
+
+1. **Combinatorial Data** - data stored in a graph
+2. **Attribute data** - the data that would be put into a data frame
+
+To give an example, 
 
 # Analysis Preparation
 
@@ -16,7 +26,6 @@ using Catlab
 
 Please see the [Appendix](#appendix) for details on these packages.
 
-NOTE: I really do not like the 
 ```julia, echo = false
 import Catlab: CategoricalAlgebra.FreeSchema
 
