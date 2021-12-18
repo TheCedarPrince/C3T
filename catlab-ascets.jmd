@@ -1,0 +1,48 @@
+# Analysis Introduction
+
+## Background on ACSets
+
+The intent of this exploratory analysis is to provide a guide to working with  Attributed C-Sets, otherwise known as "ACSets" (pronunciation: ah-chets).
+
+# Analysis Preparation
+
+## Packages Used in Analysis
+
+For this analysis, the following packages are used
+
+```julia
+using Catlab
+```
+
+Please see the [Appendix](#appendix) for details on these packages.
+
+NOTE: I really do not like the 
+```julia, echo = false
+import Catlab: CategoricalAlgebra.FreeSchema
+
+@present TheoryWeightedGraph(FreeSchema) begin
+	V::Ob
+	E::Ob
+	src::Hom(E,V)
+	tgt::Hom(E,V)
+	T::AttrType
+	weight::Attr(E,T)
+end
+```
+
+
+# Appendix
+
+## Packages Used in Analysis
+
+Package descriptions:
+
+- [`CairoMakie`](https://github.com/JuliaPlots/Makie.jl/tree/master/CairoMakie) - Backend for Makie to produce static vector graphics at publication quality
+
+- [`DataFrames`](https://github.com/JuliaData/DataFrames.jl) - Julia's dataframe handler for easily manipulating data
+
+- [`Latexify`](https://github.com/korsbo/Latexify.jl) - Enables the conversion of Julia objects to other formats such as LaTeX or Markdown
+
+- [`Makie`](https://github.com/JuliaPlots/Makie.jl) - Data visualization ecosystem for the Julia programming language, with high performance and extensibility
+
+- [`Weave`](https://github.com/JunoLab/Weave.jl) - Converts Julia Markdown files to other forms of output
