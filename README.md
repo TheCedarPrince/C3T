@@ -1,8 +1,3 @@
-@def title = "C3T - Crash Course Category Theory 🐱"
-@def weave = false
-
-\tableofcontents
-
 ## What Is C3T?
 
 **Crash Course Category Theory** is an [open source collection of notes and resources](https://github.com/TheCedarPrince/C3T) dedicated to the study of Category Theory!
@@ -18,3 +13,4 @@ A layperson's description of category theory can be summed up as follows:
 
 There are a variety of resources available on this site!
 Please visit the [resources page](/resources/) for information on books, software, and more.
+
