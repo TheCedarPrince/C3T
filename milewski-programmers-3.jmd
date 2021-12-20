@@ -1,0 +1,379 @@
+### Categories Great and Small
+
+> What is the most trivial type of category?
+
+The one with no objects and therefore no morphisms.
+
+> What is an example process of converting a directed graph to a category?
+
+Starting with a directed graph as follows:
+
+```mermaid
+graph LR
+
+A --> B
+B --> C 
+C --> D
+D --> E
+```
+
+It can be transformed into a category.
+The way of doing this is to start with adding the identity arrows at each node in the directed graph.
+
+```mermaid
+graph LR
+
+A --> B
+B --> C 
+C --> D
+D --> E
+
+A --id--> A
+B --id--> B
+C --id--> C
+D --id--> D 
+E --id--> E 
+```
+
+After adding the identity arrows, composition arrows can be created.
+Composition arrows can be created between any two arrows where the end of one arrow coincides with the beginning of the other.
+Some of the composition arrows that can be created in this directed graph are as follows:
+
+Composition arrow from Node `A` to Node `C`
+
+```mermaid
+graph LR
+
+A --> B
+B --> C 
+C --> D
+D --> E
+
+A --> C
+
+A --id--> A
+B --id--> B
+C --id--> C
+D --id--> D 
+E --id--> E 
+```
+
+Composition arrow from Node `B` to Node `D`
+
+```mermaid
+graph LR
+
+A --> B
+B --> C 
+C --> D
+D --> E
+
+B --> D
+
+A --id--> A
+B --id--> B
+C --id--> C
+D --id--> D 
+E --id--> E 
+```
+
+Composition arrow from Node `C` to Node `E`
+
+```mermaid
+graph LR
+
+A --> B
+B --> C 
+C --> D
+D --> E
+
+C --> E
+
+A --id--> A
+B --id--> B
+C --id--> C
+D --id--> D 
+E --id--> E 
+```
+
+This next arrow also shows the composition of all compositions previously made.
+It looks like an arrow from node `A` to `E` but is composed of the arrows made before:
+
+```mermaid
+graph LR
+
+A --> B
+B --> C 
+C --> D
+D --> E
+
+A --> E
+
+A --id--> A
+B --id--> B
+C --id--> C
+D --id--> D 
+E --id--> E 
+```
+
+Furthermore, there can be near infinite compositions between each of these nodes.
+The compositions shown above were examples of some of the compositions that could be made using the morphisms and nodes found in a directed graph.
+
+> How is a free category made through free construction?
+
+A free category is created through free construction where a starting structure is extended with the minimum number of items to satisfy the laws of a category.
+One example is the identity condition.
+
+> What is an example of a preorder set being a category?
+
+Say we have the preorder set statement: $A \leq B \leq C$
+To show that this is in fact a qualified category, we must prove the identity and composition requirements of a category.
+Visualizing this, we can have the graph representation of the statement:
+
+```mermaid
+graph LR
+
+A --<=--> B
+B --<=--> C
+```
+
+To prove the identity condition, we can state the following identity statements:
+
+$A \leq A$
+
+$B \leq B$
+
+$C \leq C$
+
+So in this case, identity arrows can be created using this fact:
+
+```mermaid
+graph LR
+
+A --<=--> B
+B --<=--> C
+
+A --<=--> A
+B --<=--> B
+C --<=--> C
+```
+
+To prove compositionality, given the statements $A \leq B$ and $B \leq C$, it follows that $A \leq C$.
+In this case, $A \leq C$ is the composition of the two prior statements.
+With having demonstrated the identity and compositionality of a preorder, a preorder is a type of category.
+
+> How can you create a partial order relation?
+
+If the statements $A \leq B$ and $B \leq A$ exist in an order, then it can be said that $A = B$.
+
+> By enforcing the condition that any two objects are related to one another, what sort of order is created?
+
+A linear or total order.
+
+> What is a thin category?
+
+A category where there is at most one morphism between object $A$ and object $B$.
+
+> The set of morphisms from any object $A$ to any object $B$ in a category $C$ is called a what?
+
+A _hom-set_ and is denoted as $C(A, B)$ or as $\textbf{Hom}_{C}(A, B)$.
+
+> What are examples of Monoids?
+
+Addition and multiplication form a monoid.
+Additional examples include:
+
+- Natural numbers
+- Strings
+- Lists
+
+> What is a Monoid?
+
+A set with a binary operation.
+This binary operation must:
+
+1. Be associative
+2. Contains one element that acts as a unit
+
+The element in $2$, is also referred to as a neutral element.
+
+> How are natural numbers a monoid?
+
+Natural numbers can be classified as monoids as they are associative.
+Consider three natural numbers, $a$, $b$, and $c$ and add them together:
+
+$$(a + b) + c = a + (b + c)$$
+
+Furthermore, the neutral element provided in natural numbers is the value, $0$:
+
+$$0 + a = a$$
+
+> How can you prove that strings are monoids?
+
+Using the following definitions, we can create a proof by example:
+
+```julia
+# String definitions
+a = "foo"
+b = "baz"
+c = "bar"
+```
+
+Associative proof by example:
+
+```julia
+(a * b) * c == a * (b * c)
+```
+
+Neutral element example:
+
+```julia
+a * "" == a
+```
+
+> How can a monoid be a single object category?
+
+A monoid is classified as a single object category as every monoid can be described as a single object category with a corresponding set of morphisms, the hom-set $\textbf{M}(m, m)$, where $\textbf{M}$ is the category defined by the monoid and $m$ is the single object.
+The binary operator in this set can be defined as the monoidal product of two set-elements.
+
+For example, given two elements from $\textbf{M}(m, m)$, $f$ and $g$, the product of these elements will be the composition $f \circ g$.
+This works as the source and the target for the morphisms are always the same object, $m$.
+As a result, it is always possible to return a set monoid from a category monoid.
+
+#### Challenges
+
+1. Generate a free category from:
+   1. A graph with one node and no edges
+   2. A graph with one node and one (directed) edge (hint: this edge can be composed with itself)
+   3. A graph with two nodes and a single arrow between them
+   4. A graph with a single node and 26 arrows marked with the letters of the alphabet: a, b, c … z. 
+
+**For 1.1**, the answer can look like this:
+
+```mermaid
+graph LR
+
+A --id--> A
+```
+
+**For 1.2**, there are infinitely many compositions made alongside the identity arrow.
+The reason for this is that by the typical definition of a graph's edge, an edge must have two endpoints.
+In this case, the directed edge's starting point and end point are the same node.
+These edges can be composed infinitely and be valid morphisms of the object (the single node) as they will always start and end at the same object in this category.
+
+**For 1.3**, the answer could look like this:
+
+```mermaid
+graph LR
+
+A --> B
+A --id--> A
+B --id--> B
+```
+
+**For 1.4**, the answer is similar to 1.2's answer as again, there will be infinitely many compositions made alongside the identity arrow.
+Unlike 1.2, the arrows given here are concrete instead of abstract.
+For example, using just the letter $a$, the category could start looking like this:
+
+```mermaid
+graph TD
+
+A --id--> A
+A --a--> A
+A --aa--> A
+A --aaa--> A
+A --aaaa--> A
+A --aaaaa--> A
+```
+
+Furthermore, as these arrows are composable, they can also start creating compositions which look like this:
+
+```mermaid
+graph TD
+
+A --id--> A
+A --a--> A
+A --ab--> A
+A --abc--> A
+A --abcd--> A
+A --abcde--> A
+```
+
+2. What kind of order is this?
+
+   1. A set of sets with the inclusion relation: $A$ is included in $B$ if every element of $A$ is also an element of $B$.
+   2. C++ types with the following subtyping relation: T1 is a subtype of T2 if a pointer to T1 can be passed to a function that expects a pointer to T2 without triggering a compilation error. 
+
+**For 2.1**, this kind of order is known as a partial order.
+
+Skipped 2.2
+
+3. Considering that `Bool` is a set of two values `True` and `False`, show that it forms two (set-theoretical) monoids with respect to, respectively, operator `&&` (`AND`) and `||` (`OR`).
+
+Let `a`, `b`, `c`, be of type `Bool`:
+
+```julia
+a = true
+b = true
+c = true
+```
+
+We can show the associative property of these two operators as follows:
+
+```julia
+a && (b && c) == (a && b) && c
+a || (b || c) == (a || b) || c
+```
+
+Monoid around `&&`:
+
+```julia
+a && true == a
+true && a == a
+```
+
+```julia
+a && false != a
+false && a != a
+```
+
+Monoid around `||`:
+
+```julia
+a || true == a
+true || a == a
+```
+
+```julia
+a || false == a
+false || a == a
+```
+
+4. Represent the `Bool` monoid with the `AND` operator as a category:
+List the morphisms and their rules of composition.
+
+```julia
+a = Bool
+```
+
+```julia, eval = false
+#= Morphisms =#
+
+# Identity Morphism
+a && true == a
+
+# Commutative Morphism
+a ∘ a == a
+```
+
+```mermaid
+graph TD
+
+a --true--> a
+a --AND--> a
+```
+
+
+5. Represent addition modulo 3 as a monoid category.
+
+Skipped

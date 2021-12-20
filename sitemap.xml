@@ -3,67 +3,73 @@
 
 <url>
     <loc>http://jacobzelko.com/C3T/search/index.html</loc>
-    <lastmod>2021-12-18</lastmod>
+    <lastmod>2021-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>http://jacobzelko.com/C3T/pure-functions/index.html</loc>
-    <lastmod>2021-12-18</lastmod>
+    <lastmod>2021-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>http://jacobzelko.com/C3T/milewski-programmers-2/index.html</loc>
-    <lastmod>2021-12-18</lastmod>
+    <lastmod>2021-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>http://jacobzelko.com/C3T/milewski-programmers-3/index.html</loc>
+    <lastmod>2021-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>http://jacobzelko.com/C3T/milewski-programmers-1/index.html</loc>
-    <lastmod>2021-12-18</lastmod>
+    <lastmod>2021-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>http://jacobzelko.com/C3T/spivak-sciences/index.html</loc>
-    <lastmod>2021-12-18</lastmod>
+    <lastmod>2021-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>http://jacobzelko.com/C3T/index.html</loc>
-    <lastmod>2021-12-18</lastmod>
+    <lastmod>2021-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>http://jacobzelko.com/C3T/pure-functions-raw/index.html</loc>
-    <lastmod>2021-12-18</lastmod>
+    <lastmod>2021-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>http://jacobzelko.com/C3T/software/index.html</loc>
-    <lastmod>2021-12-18</lastmod>
+    <lastmod>2021-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>http://jacobzelko.com/C3T/resources/index.html</loc>
-    <lastmod>2021-12-18</lastmod>
+    <lastmod>2021-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>http://jacobzelko.com/C3T/books/index.html</loc>
-    <lastmod>2021-12-18</lastmod>
+    <lastmod>2021-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
     <loc>http://jacobzelko.com/C3T/404/index.html</loc>
-    <lastmod>2021-12-18</lastmod>
+    <lastmod>2021-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
