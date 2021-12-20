@@ -9,30 +9,30 @@ The one with no objects and therefore no morphisms.
 Starting with a directed graph as follows:
 
 ```mermaid
-graph LR
+graph LR;
 
-A --> B
-B --> C 
-C --> D
-D --> E
+A --> B;
+B --> C; 
+C --> D;
+D --> E;
 ```
 
 It can be transformed into a category.
 The way of doing this is to start with adding the identity arrows at each node in the directed graph.
 
 ```mermaid
-graph LR
+graph LR;
 
-A --> B
-B --> C 
-C --> D
-D --> E
+A --> B;
+B --> C; 
+C --> D;
+D --> E;
 
-A --id--> A
-B --id--> B
-C --id--> C
-D --id--> D 
-E --id--> E 
+A --id--> A;
+B --id--> B;
+C --id--> C;
+D --id--> D; 
+E --id--> E; 
 ```
 
 After adding the identity arrows, composition arrows can be created.
@@ -42,78 +42,78 @@ Some of the composition arrows that can be created in this directed graph are as
 Composition arrow from Node `A` to Node `C`
 
 ```mermaid
-graph LR
+graph LR;
 
-A --> B
-B --> C 
-C --> D
-D --> E
+A --> B;
+B --> C; 
+C --> D;
+D --> E;
 
-A --> C
+A --> C;
 
-A --id--> A
-B --id--> B
-C --id--> C
-D --id--> D 
-E --id--> E 
+A --id--> A;
+B --id--> B;
+C --id--> C;
+D --id--> D; 
+E --id--> E; 
 ```
 
 Composition arrow from Node `B` to Node `D`
 
 ```mermaid
-graph LR
+graph LR;
 
-A --> B
-B --> C 
-C --> D
-D --> E
+A --> B;
+B --> C; 
+C --> D;
+D --> E;
 
-B --> D
+B --> D;
 
-A --id--> A
-B --id--> B
-C --id--> C
-D --id--> D 
-E --id--> E 
+A --id--> A;
+B --id--> B;
+C --id--> C;
+D --id--> D; 
+E --id--> E; 
 ```
 
 Composition arrow from Node `C` to Node `E`
 
 ```mermaid
-graph LR
+graph LR;
 
-A --> B
-B --> C 
-C --> D
-D --> E
+A --> B;
+B --> C; 
+C --> D;
+D --> E;
 
-C --> E
+C --> E;
 
-A --id--> A
-B --id--> B
-C --id--> C
-D --id--> D 
-E --id--> E 
+A --id--> A;
+B --id--> B;
+C --id--> C;
+D --id--> D; 
+E --id--> E; 
 ```
 
 This next arrow also shows the composition of all compositions previously made.
 It looks like an arrow from node `A` to `E` but is composed of the arrows made before:
 
 ```mermaid
-graph LR
+graph LR;
 
-A --> B
-B --> C 
-C --> D
-D --> E
+A --> B;
+B --> C; 
+C --> D;
+D --> E;
 
-A --> E
+A --> E;
 
-A --id--> A
-B --id--> B
-C --id--> C
-D --id--> D 
-E --id--> E 
+A --id--> A;
+B --id--> B;
+C --id--> C;
+D --id--> D; 
+E --id--> E; 
 ```
 
 Furthermore, there can be near infinite compositions between each of these nodes.
@@ -131,10 +131,10 @@ To show that this is in fact a qualified category, we must prove the identity an
 Visualizing this, we can have the graph representation of the statement:
 
 ```mermaid
-graph LR
+graph LR;
 
-A --<=--> B
-B --<=--> C
+A --<=--> B;
+B --<=--> C;
 ```
 
 To prove the identity condition, we can state the following identity statements:
@@ -150,12 +150,12 @@ So in this case, identity arrows can be created using this fact:
 ```mermaid
 graph LR
 
-A --<=--> B
-B --<=--> C
+A --<=--> B;
+B --<=--> C;
 
-A --<=--> A
-B --<=--> B
-C --<=--> C
+A --<=--> A;
+B --<=--> B;
+C --<=--> C;
 ```
 
 To prove compositionality, given the statements $A \leq B$ and $B \leq C$, it follows that $A \leq C$.
@@ -251,9 +251,9 @@ As a result, it is always possible to return a set monoid from a category monoid
 **For 1.1**, the answer can look like this:
 
 ```mermaid
-graph LR
+graph LR;
 
-A --id--> A
+A --id--> A;
 ```
 
 **For 1.2**, there are infinitely many compositions made alongside the identity arrow.
@@ -264,11 +264,11 @@ These edges can be composed infinitely and be valid morphisms of the object (the
 **For 1.3**, the answer could look like this:
 
 ```mermaid
-graph LR
+graph LR;
 
-A --> B
-A --id--> A
-B --id--> B
+A --> B;
+A --id--> A;
+B --id--> B;
 ```
 
 **For 1.4**, the answer is similar to 1.2's answer as again, there will be infinitely many compositions made alongside the identity arrow.
@@ -276,27 +276,27 @@ Unlike 1.2, the arrows given here are concrete instead of abstract.
 For example, using just the letter $a$, the category could start looking like this:
 
 ```mermaid
-graph TD
+graph TD;
 
-A --id--> A
-A --a--> A
-A --aa--> A
-A --aaa--> A
-A --aaaa--> A
-A --aaaaa--> A
+A --id--> A;
+A --a--> A;
+A --aa--> A;
+A --aaa--> A;
+A --aaaa--> A;
+A --aaaaa--> A;
 ```
 
 Furthermore, as these arrows are composable, they can also start creating compositions which look like this:
 
 ```mermaid
-graph TD
+graph TD;
 
-A --id--> A
-A --a--> A
-A --ab--> A
-A --abc--> A
-A --abcd--> A
-A --abcde--> A
+A --id--> A;
+A --a--> A;
+A --ab--> A;
+A --abc--> A;
+A --abcd--> A;
+A --abcde--> A;
 ```
 
 2. What kind of order is this?
@@ -367,10 +367,10 @@ a ∘ a == a
 ```
 
 ```mermaid
-graph TD
+graph TD;
 
-a --true--> a
-a --AND--> a
+a --true--> a;
+a --AND--> a;
 ```
 
 
