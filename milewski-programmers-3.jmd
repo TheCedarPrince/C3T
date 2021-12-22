@@ -148,7 +148,7 @@ $C \leq C$
 So in this case, identity arrows can be created using this fact:
 
 ```mermaid
-graph LR
+graph LR;
 
 A --<=--> B;
 B --<=--> C;
