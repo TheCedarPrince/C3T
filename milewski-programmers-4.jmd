@@ -1,0 +1,153 @@
+### Kleisli Categories
+
+**NOTE: I have decided to skip the Haskell portion of this chapter being Section 4.2 as there was not a full implementation of the Writer Monad and Kleisli Category examples provided.
+As I am not an expert in Haskell, I have decided to move forward to focus on the math over Haskell.
+If you have an implementation, feel free to open a PR on this repo!**
+
+> What is an example of a non-pure function?
+
+```julia
+global logger = ""
+
+function negate(x::Bool) 
+     global logger = "Negated!"
+     return !x
+end
+```
+
+This function also modifies `logger` as a side effect and as such `negate` is a non-pure function.
+
+> What is the Writer Category?
+
+The Writer Category is a category that allows one to track the execution of functions.
+
+> What are examples of the Writer Category involving Strings?
+
+```julia
+function toUpper(str::String)::Vector{Union{String, String}}
+    return [uppercase(str), "toUpper "]
+end
+```
+
+```julia
+words(w::String)::Vector{Union{Vector{String}, String}} = [string.(split(w)), "toWords "]
+toWords(w::String)::Vector{Union{Vector{String}, String}} = words(w)
+```
+
+```julia
+function process(sentence::String)::Vector{Union{Vector{String}, String}}
+	p1 = toUpper(sentence)
+	p2 = toWords(first(p1))
+	return [first(p2), p1[2] .* p2[2]]
+end
+```
+
+> What are examples of the Writer Category involving Numerics?
+
+```julia
+isEven(x::Int)::Vector{Union{Bool, String}} = [x % 2 == 0, "isEven "]
+negate(x::Bool)::Vector{Union{Bool, String}} = [!x, "Negated "]
+```
+
+```julia
+function isOdd(x::Int)::Vector{Union{Bool,String}}
+    p1 = isEven(x)
+    p2 = negate(first(p1))
+
+    return [p2[1], p1[2] * p2[2]]
+end
+```
+
+> What is a generic composition function of the Writer Category?
+
+```julia
+function compose(f::Function, g::Function)
+    function _compose(x; f = f, g = g)
+        p1 = f(x)
+        p2 = g(p1[1])
+
+        return [p2[1], p1[2] * p2[2]]
+    end
+end
+```
+
+> What is a generic identity function of the Writer Category?
+
+```julia
+function identity(x)
+	return [x, ""]
+end
+```
+
+> What are Kleisli Categories?
+
+A working definition is that it is a category that has as objects the types of the underlying programming language.
+
+> What are the characteristics of Kleisli Categories?
+
+- It is based on the _writer monad_
+- Its objects are the types of an programming language
+- Kleisli categories define their own compositions
+
+> What are examples of morphisms in the Kleisli Category?
+
+An arrow from some type $A$ to some type derived from $B$.
+
+> What is a Writer Monad?
+
+A writer monad is used for logging or tracing the execution of functions.
+General process to embed effects in pure computations.
+
+> What do Writer Monads do?
+
+They log or trace the execution of functions as well as execute a procedure.
+
+> What is a partial function?
+
+A function that is not defined for all possible values of its argument.
+
+### Challenge
+
+1. Construct the Kleisli category for partial functions (define composition and identity).
+
+```julia
+function compose(f::Function, g::Function)
+    function _compose(x; f = f, g = g)
+        p1 = f(x)
+        p2 = g(p1[1])
+
+        return [p2[1], p1[2] * p2[2]]
+    end
+end
+```
+
+```julia
+function identity(x)
+	return [x[1], "" * x[2]]
+end
+```
+
+2. Implement the embellished function `safe_reciprocal` that returns a valid reciprocal of its argument, if it’s different from zero.
+
+```julia
+function safe_reciprocal(x)
+	x != 0.0 ? [1.0 / x, "Safe Reciprocal "] : [Real[], "Safe Reciprocal "]
+end
+```
+
+3. Compose the functions `safe_root` and `safe_reciprocal` to implement `safe_root_reciprocal` that calculates `sqrt(1/x)` whenever possible.
+
+```julia
+function safe_root(x)
+	x >= 0.0 ? [sqrt(x), "Safe Root "] : [Real[], "Safe Root "]
+end
+```
+
+```julia
+function safe_root_reciprocal(x)
+	p1 = safe_root(x)
+        p2 = identity(safe_reciprocal(p1[1]))
+
+        return [p2[1], p1[2] * p2[2]]
+end
+```
