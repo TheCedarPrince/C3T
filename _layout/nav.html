@@ -1,66 +1,97 @@
 <div class="main-nav slideout-menu slideout-menu-left" id="menu">
-  <div class="flex-container">
-    <span class="sidebar-brand">
+    <div class="flex-container">
+        <span class="sidebar-brand">
       <h3 style='font-size: 25px'>🐱 C3T 🐱</h3>
     </span>
-  </div> <!-- class="flex-container" -->
-  
-  <!--LUNR SEARCH BOX-->
-    <script src="/libs/lunr/lunr.min.js"></script>
-  <script src="/libs/lunr/lunr_index.js"></script>
-  <script src="/libs/lunr/lunrclient.min.js"></script>
-  
-<style>
-.result-title a { text-decoration: none; }
-.result-title a:hover { text-decoration: underline; }
-.result-preview { color: #808080; }
-.resultCount { color: #808080; }
-.result-query { font-weight: bold; }
-#lunrSearchForm { margin-top: 1em; }
-</style>
+    </div>
+    <!-- class="flex-container" -->
 
-  <nav class="sidebar-nav">
-    <ul class="metismenu"  id="metismenu" >
-      <li><a href="/">Home</a></li>
-      <li>
-	<form id="lunrSearchForm" name="lunrSearchForm">
-  <input class="search-input" name="q" placeholder="Enter search term" type="text">
-  <input type="submit" value="Search" formaction="/search/index.html">
-</form>
-      </li>
-      <li><a href="/" class="has-arrow">Resources</a>
-      <ul>
-	      <li><a href="/resources/">Resources Overview</a>
-            <li><a href="/" class="has-arrow">Books</a>
-	      <ul>
-		    <li><a href="/books/">Books Resource Guide</a></li>
-		    <li><a href="/" class="has-arrow">Category Theory for Programmers</a>
-		    <ul>
-		    <li><a href="/milewski-programmers-1">Chapter 1</a></li>
-		    <li><a href="/milewski-programmers-2">Chapter 2</a></li>
-		    <li><a href="/milewski-programmers-3">Chapter 3</a></li>
-		    <li><a href="/milewski-programmers-4">Chapter 4</a></li>
-		    </ul>
-		    </li>
-		    <li><a href="/spivak-sciences/">Category Theory for the Sciences</a></li>
-	      </ul>
-	    </li>
-            <li><a href="/" class="has-arrow">Software</a>
-	      <ul>
-		    <li><a href="/software/">Software Resource Guide</a></li>
-	      </ul>
-	    </li>
-      </ul>
-      </li>
-    </ul>
-  </nav>
-</div> <!-- main nav menu -->
+    <!--LUNR SEARCH BOX-->
+    <script src="/libs/lunr/lunr.min.js"></script>
+    <script src="/libs/lunr/lunr_index.js"></script>
+    <script src="/libs/lunr/lunrclient.min.js"></script>
+
+    <style>
+        .result-title a {
+            text-decoration: none;
+        }
+
+        .result-title a:hover {
+            text-decoration: underline;
+        }
+
+        .result-preview {
+            color: #808080;
+        }
+
+        .resultCount {
+            color: #808080;
+        }
+
+        .result-query {
+            font-weight: bold;
+        }
+
+        #lunrSearchForm {
+            margin-top: 1em;
+        }
+    </style>
+
+    <nav class="sidebar-nav">
+        <ul class="metismenu" id="metismenu">
+            <li><a href="/">Home</a></li>
+            <li>
+                <form id="lunrSearchForm" name="lunrSearchForm">
+                    <input class="search-input" name="q" placeholder="Enter search term" type="text">
+                    <input type="submit" value="Search" formaction="/search/index.html">
+                </form>
+            </li>
+            <li><a href="/" class="has-arrow">Resources</a>
+                <ul>
+                    <li><a href="/resources/">Resources Overview</a>
+                        <li><a href="/" class="has-arrow">Books</a>
+                            <ul>
+                                <li><a href="/books/">Books Resource Guide</a></li>
+                                <li><a href="/" class="has-arrow">Category Theory for Programmers</a>
+                                    <ul>
+                                        <li><a href="/milewski-programmers-1">Chapter 1</a></li>
+                                        <li><a href="/milewski-programmers-2">Chapter 2</a></li>
+                                        <li><a href="/milewski-programmers-3">Chapter 3</a></li>
+                                        <li><a href="/milewski-programmers-4">Chapter 4</a></li>
+                                    </ul>
+                                </li>
+
+                                <li><a href="/" class="has-arrow">Category Theory for the Sciences</a>
+                                    <ul>
+                                        <li><a href="/11082021041951-category-theory-scientists">Overview</a></li>
+                                        <li><a href="/02192022223803-scientists-introduction">Chapter 1</a></li>
+                                        <li><a href="/" class="has-arrow">Chapter 2</a>
+                                            <ul>
+                                                <li><a href="/02192022224435-category-sets">Overview</a></li>
+                                                <li><a href="/02212022050947-sets.md">Subsection 2.1.1</a></li>
+                                                <li><a href="02212022051418-functions.md">Subsection 2.1.2</a></li>
+                                            </ul>
+                                    </ul>
+                                    </li>
+                            </ul>
+                            </li>
+                            <li><a href="/" class="has-arrow">Software</a>
+                                <ul>
+                                    <li><a href="/software/">Software Resource Guide</a></li>
+                                </ul>
+                            </li>
+                </ul>
+                </li>
+        </ul>
+    </nav>
+</div>
+<!-- main nav menu -->
 
 <main id="panel" class="slidout-panel slideout-panel-left">
-  <div class="toggle-button hamburger hamburger--spin">
-    <div class="hamburger-box">
-      <div class="hamburger-inner"></div>
+    <div class="toggle-button hamburger hamburger--spin">
+        <div class="hamburger-box">
+            <div class="hamburger-inner"></div>
+        </div>
     </div>
-  </div>
-  <h1 class="page title">{{isdef title}}{{fill title}}{{end}}</h1>
-  <hr>
+    <h1 class="page title">{{isdef title}}{{fill title}}{{end}}</h1>
+    <hr>
