@@ -86,24 +86,56 @@ function hfun_insert_weave(params)
     return html
 end
 
+function markdown_delinker(fpath)
+    f = readlines(fpath)
+    for (idx, line) in enumerate(f)
+        if occursin(r"(?:__|[*#])|\[(.+?)]\((.+?)\)", line)
+            matches = eachmatch(r"(?:__|[*#])|\[(.+?)]\((.+?)\)", line) |> collect
+            if !isempty(matches)
+                for m in matches
+                    if !isnothing(m.captures[2])
+                        link = splitext(m.captures[2])
+                        if link[2] == ".md"
+                            line =
+                                replace(line, m.match => "[$(m.captures[1])](/$(link[1]))")
+                        end
+                    end
+                end
+            end
+        end
+        f[idx] = line
+    end
+
+    tpath = tempname()
+    open(tpath, "w") do x
+        for line in f
+            write(x, line * "\n")
+        end
+    end
+    return tpath
+end
+
 function hfun_insert_pandoc(params)
     rpath = params[1]
     file_path = joinpath(Franklin.path(:folder), rpath)
     (isfile(file_path) && splitext(file_path)[2] == ".md") || return ""
-    t = tempname()
+
+    file = markdown_delinker(file_path)
+
     s = ""
     if length(params) == 2
         cite_path = joinpath(Franklin.path(:folder), params[2])
+	csl_path = joinpath(Franklin.path(:folder), "ieee.csl")
         s = pandoc() do pandoc_bin
-            s = read(
-                `$(pandoc_bin) --citeproc -i $file_path --bibliography=$cite_path -t html`,
+            s = read(pipeline(
+                `cat $file`, `$(pandoc_bin) --citeproc --csl=$csl_path --bibliography=$cite_path -f markdown -t html`),
                 String,
             )
             return s
         end
     else
         s = pandoc() do pandoc_bin
-            s = read(`$(pandoc_bin) -i $file_path -t html`, String)
+            s = read(pipeline(`cat $file`, `$(pandoc_bin) -i $file_path -t html`), String)
             return s
         end
     end
