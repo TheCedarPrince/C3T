@@ -373,7 +373,6 @@ a --true--> a;
 a --AND--> a;
 ```
 
-
 5. Represent addition modulo 3 as a monoid category.
 
 Skipped
