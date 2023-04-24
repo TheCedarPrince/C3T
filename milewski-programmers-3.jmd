@@ -148,7 +148,7 @@ $C \leq C$
 So in this case, identity arrows can be created using this fact:
 
 ```mermaid
-graph LR
+graph LR;
 
 A --<=--> B;
 B --<=--> C;
@@ -372,7 +372,6 @@ graph TD;
 a --true--> a;
 a --AND--> a;
 ```
-
 
 5. Represent addition modulo 3 as a monoid category.
 
